@@ -15,9 +15,18 @@ app.use(express.static(publicPath));
 // on register an event listener
 io.on('connection', (socket) => {
   console.log('New user connected');
-  socket.on('disconnect', () => {
-    console.log('user disconnected')
+
+  socket.emit('newMessage', {
+    from: 'Admin',
+    text: 'Welcome to the chat app',
+    createdAt: new Date().getTime()
   });
+
+  socket.broadcast.emit('newMessage', {
+    from: 'Admin',
+    text: 'A new user joined the room',
+    createdAt: new Date().getTime()
+  })
 
   socket.on('createMessage', (message) => {
     console.log('Create Message:', message);
@@ -25,14 +34,22 @@ io.on('connection', (socket) => {
       from: message.from,
       text: message.text,
       createdAt: new Date().getTime()
-    })
+    });
+    // socket.broadcast.emit('newMessage', {
+    //   from: message.from,
+    //   test: message.text,
+    //   createdAt: new Date().getTime()
+    // });
+
+
   });
 
-  socket.emit('newMessage', {
-    from: 'server@server.com',
-    text: 'Hello There',
-    createdAt: new Date()
+  socket.on('disconnect', () => {
+    console.log('user disconnected')
   });
+
+
+
 });
 
 
