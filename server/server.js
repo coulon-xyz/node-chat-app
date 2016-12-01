@@ -25,7 +25,7 @@ io.on('connection', (socket) => {
   socket.on('createMessage', (message, callback) => {
     console.log("new message:", message);
     io.emit('newMessage', generateMessage(message.from, message.text));
-    callback('This is an ack from the server');
+    callback(); // acknowledging
   });
 
   socket.on('createLocationMessage', (coords) => {
