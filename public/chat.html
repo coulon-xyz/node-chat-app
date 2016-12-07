@@ -6,13 +6,13 @@
   <title>Join | ChatApp</title>
   <meta charset="utf-8">
   <link rel="stylesheet" href="./css/styles.css">
-  <meta name="viewport" content="width=device-width, inital-scale=1, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 </head>
 
 <body class="chat">
   <div class="chat__sidebar">
     <h3>People</h3>
-    <div id="user"></div>
+    <div id="users"></div>
   </div>
 
  <div class="chat__main">
@@ -25,6 +25,8 @@
      <button id="send-location">send location</button>
    </div>
  </div>
+
+
 
  <script id="message-template" type="text/template">
    <li class="message">
@@ -48,11 +50,11 @@
     </div>
  </script>
 
-
-  <script src="/js/chat.js"></script>
   <script src="/socket.io/socket.io.js"></script>
   <script src="/js/libs/jquery-3.1.1.min.js"></script>
   <script src="/js/libs/moment.js"></script>
   <script src="/js/libs/mustache.js"></script>
+  <script src="/js/libs/deparam.js"></script>
+  <script src="/js/chat.js"></script>
 </body>
 </html>
